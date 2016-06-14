@@ -1,0 +1,34 @@
+Welcome to my ICAP server
+=========================
+
+This server has been written as a semester project by Fabian Franz.
+It is fully written in ruby, so it should run on any implementation of ruby in any version >= 2.0.0.
+
+It is really easy to use it and create your own ICAP service and make it available for your proxy.
+
+First of all you need an instance of ICAPrb::Server::ICAPServer, which does not need any parameters but can take a
+hostname and a port, as well as some options which are requred for setting up logging or TLS.
+The default is localhost on port 1344 which usually results in a binding of [::1]:1344 as IPv6
+is preferred on modern systems.
+
+When you created your server, you will have to add some +services+ by writing an instance of them in the services
+property of the server, with the name as key.
+
+When all your services are added to the server, you can simply start it by calling the "run" method.
+Note, that run will +block+ the process and will run until the process is interrupted (for example by pressing ctrl + c).
+
+---
+
+You can write your own services by extending the ServiceBase class which is in ICAPrb::Server::Services.
+Please look at the documentation of this class or just copy the EchoService and use it as a base for your own service.
+
+---
+
+Note: ICAP is a mighty tool and it can do good and evil things.
+It could be illegal to use this kind of software in your country.
+You are encuraged to check if this software and the services running on it are legal
+and don't use this software in case it is not.
+
+---
+
+If you want to know more about ICAP, you should read the RFC 3507.
