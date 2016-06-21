@@ -135,7 +135,13 @@ module ICAPrb
         @length_read += line.length
         str_method, str_uri, str_version = line.scan(/(GET|POST|PUT|DELETE|PATCH|OPTIONS|TRACE|HEAD|CONNECT) (\S+) HTTP\/([\d\.]+)/i).first
         raise HTTP_Parse_Error.new 'invalid http Method' if str_method.nil?
-        uri = URI(str_uri)
+        unless str_method == 'CONNECT'
+          uri = URI(str_uri)
+        else
+          host,port = str_uri.split(':')
+          uri = URI::Generic.new(nil,nil,host,port,nil,nil,"#{host}:#{port}",nil,nil).to_s
+        end
+
         unless str_method && uri && str_version
           raise HTTP_Parse_Error.new 'The request line is not complete.'
         end
