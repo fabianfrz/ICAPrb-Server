@@ -8,6 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = ICAPrb::Server::VERSION
   spec.authors       = ["Fabian Franz"]
   spec.email         = ["fabian.franz@students.fh-hagenberg.at"]
+  spec.license       = "BSD-2-Clause"
 
   spec.summary       = %q{This project includes an ICAP server fully implemented in Ruby but it does not include services.}
   spec.homepage      = "https://github.com/fabianfrz/ICAPrb-Server"
